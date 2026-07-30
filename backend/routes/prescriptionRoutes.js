@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import { body } from 'express-validator'
+import multer from 'multer'
 import { validate } from '../middleware/validate.js'
 import { starterMedicines } from '../data/starterMedicines.js'
 
 const router = Router()
+const upload = multer({ dest: 'uploads/' })
 
 const normalize = (value) => value?.toString().trim().toLowerCase() || ''
 
@@ -40,6 +42,7 @@ function buildResult(medicine) {
 
 router.post(
   '/scan',
+  upload.single('prescription'),
   [
     body('fileName').optional().trim().isLength({ max: 250 }),
     body('fileType').optional().trim().isLength({ max: 100 }),
@@ -48,7 +51,10 @@ router.post(
   validate,
   async (req, res, next) => {
     try {
-      const medicine = findMedicineByText(req.body.fileText, req.body.fileName)
+      const medicine = findMedicineByText(
+        req.body.fileText,
+        req.file?.originalname || req.body.fileName || ''
+      )
       res.json(buildResult(medicine))
     } catch (error) {
       next(error)

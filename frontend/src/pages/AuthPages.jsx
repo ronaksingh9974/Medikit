@@ -5,12 +5,7 @@ import { Button, Input } from '../components/Ui'
 import { loginUser, registerUser } from '../services/authService'
 
 export function AuthPage({ register = false }) {
- const go = useNavigate()
- const location = useLocation()
- const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' })
- const [error, setError] = useState('')
- const [loading, setLoading] = useState(false)
-
+ const go = useNavigate(), location = useLocation(), [form,setForm] = useState({ name:'', email:'', password:'', confirm:'' }), [error,setError] = useState(''), [loading,setLoading] = useState(false)
  const fromPath = location.state?.from || '/dashboard'
  const returningFrom = location.state?.from
  const change = e => setForm({ ...form, [e.target.name]: e.target.value })
@@ -36,11 +31,9 @@ export function AuthPage({ register = false }) {
      localStorage.setItem('accessToken', response.accessToken)
      localStorage.setItem('refreshToken', response.refreshToken)
      localStorage.setItem('userName', response.user.name)
-     localStorage.setItem('user', JSON.stringify(response.user))
-     try { window.dispatchEvent(new CustomEvent('auth:login', { detail: response.user })) } catch (e) {}
      go(fromPath)
    } catch (err) {
-     setError(err.message || 'Network error. Please try again.')
+     setError(err.message)
    } finally {
      setLoading(false)
    }

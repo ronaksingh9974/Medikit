@@ -8,6 +8,7 @@ import emergencyRoutes from './routes/emergencyRoutes.js'
 import medicineRoutes from './routes/medicineRoutes.js'
 import prescriptionRoutes from './routes/prescriptionRoutes.js'
 import reminderRoutes from './routes/reminderRoutes.js'
+import consultationRoutes from './routes/consultationRoutes.js'
 
 const app = express()
 app.use(cors({ origin: env.clientOrigin.split(',').map((origin) => origin.trim()), methods: ['GET', 'POST', 'PUT', 'DELETE'], allowedHeaders: ['Content-Type', 'Authorization'] }))
@@ -20,6 +21,7 @@ app.use('/api/medicines', medicineRoutes)
 app.use('/api/reminders', reminderRoutes)
 app.use('/api/emergency', emergencyRoutes)
 app.use('/api/prescriptions', prescriptionRoutes)
+app.use('/api/consultations', consultationRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
