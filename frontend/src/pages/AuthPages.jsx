@@ -1,11 +1,99 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaApple, FaFacebook, FaGoogle } from 'react-icons/fa'
-import { Button, Input } from '../components/Ui'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
+import { Button, Input } from "../components/Ui";
 
 export function AuthPage({ register = false }) {
- const go = useNavigate(), [form,setForm] = useState({ name:'', email:'', password:'', confirm:'' }), [error,setError] = useState('')
- const submit = e => { e.preventDefault(); if (register && !form.name) return setError('Enter your full name.'); if (!/\S+@\S+\.\S+/.test(form.email)) return setError('Enter a valid email address.'); if (form.password.length < 8) return setError('Password must be at least 8 characters.'); if (register && form.password !== form.confirm) return setError('Passwords do not match.'); go('/dashboard') }
- const change = e => setForm({...form,[e.target.name]:e.target.value})
- return <div className="auth-page"><div className="auth-card"><div className="auth-copy"><h1>{register ? 'Create Account' : 'Welcome Back'}</h1><p>{register ? 'Sign up to get started' : 'Login To Continue'}</p></div><form onSubmit={submit}>{register && <Input label="Full Name" name="name" value={form.name} onChange={change} placeholder="Full name"/>}<Input label="Email" name="email" value={form.email} onChange={change} placeholder="Email address" type="email"/><Input label="Password" name="password" value={form.password} onChange={change} placeholder="Password" type="password"/>{register && <Input label="Confirm Password" name="confirm" value={form.confirm} onChange={change} placeholder="Confirm password" type="password"/>}{!register && <a className="forgot" href="#forgot">Forgot Password?</a>}{error && <p className="error">{error}</p>}<Button type="submit">{register ? 'Sign up' : 'Login'}</Button></form><div className="or">or continue with</div><div className="socials"><button aria-label="Continue with Google"><FaGoogle/></button><button aria-label="Continue with Facebook"><FaFacebook/></button><button aria-label="Continue with Apple"><FaApple/></button></div><p className="auth-foot">{register ? 'Already have an account?' : 'New to Medkit?'} <Link to={register ? '/login' : '/register'}>{register ? 'Login' : 'Sign up'}</Link></p></div></div>
+  const go = useNavigate(),
+    [form, setForm] = useState({
+      name: "",
+      email: "",
+      password: "",
+      confirm: "",
+    }),
+    [error, setError] = useState("");
+  const submit = (e) => {
+    e.preventDefault();
+    if (register && !form.name) return setError("Enter your full name.");
+    if (!/\S+@\S+\.\S+/.test(form.email))
+      return setError("Enter a valid email address.");
+    if (form.password.length < 8)
+      return setError("Password must be at least 8 characters.");
+    if (register && form.password !== form.confirm)
+      return setError("Passwords do not match.");
+    go("/dashboard");
+  };
+  const change = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  return (
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-copy">
+          <h1>{register ? "Create Account" : "Welcome Back"}</h1>
+          <p>{register ? "Sign up to get started" : "Login To Continue"}</p>
+        </div>
+        <form onSubmit={submit}>
+          {register && (
+            <Input
+              label="Full Name"
+              name="name"
+              value={form.name}
+              onChange={change}
+              placeholder="Full name"
+            />
+          )}
+          <Input
+            label="Email"
+            name="email"
+            value={form.email}
+            onChange={change}
+            placeholder="Email address"
+            type="email"
+          />
+          <Input
+            label="Password"
+            name="password"
+            value={form.password}
+            onChange={change}
+            placeholder="Password"
+            type="password"
+          />
+          {register && (
+            <Input
+              label="Confirm Password"
+              name="confirm"
+              value={form.confirm}
+              onChange={change}
+              placeholder="Confirm password"
+              type="password"
+            />
+          )}
+          {!register && (
+            <a className="forgot" href="#forgot">
+              Forgot Password?
+            </a>
+          )}
+          {error && <p className="error">{error}</p>}
+          <Button type="submit">{register ? "Sign up" : "Login"}</Button>
+        </form>
+        <div className="or">or continue with</div>
+        <div className="socials">
+          <button aria-label="Continue with Google">
+            <FaGoogle />
+          </button>
+          <button aria-label="Continue with Facebook">
+            <FaFacebook />
+          </button>
+          <button aria-label="Continue with Apple">
+            <FaApple />
+          </button>
+        </div>
+        <p className="auth-foot">
+          {register ? "Already have an account?" : "New to Medkit?"}{" "}
+          <Link to={register ? "/login" : "/register"}>
+            {register ? "Login" : "Sign up"}
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
