@@ -2,7 +2,8 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const required = ['MONGODB_URI', 'JWT_ACCESS_SECRET', 'JWT_REFRESH_SECRET']
+// In development, allow starting without an external MongoDB by using an in-memory server.
+const required = ['JWT_ACCESS_SECRET', 'JWT_REFRESH_SECRET']
 
 export function validateEnvironment() {
   const missing = required.filter((key) => !process.env[key])
@@ -11,7 +12,8 @@ export function validateEnvironment() {
 
 export const env = {
   port: Number(process.env.PORT || 5000),
-  mongoUri: process.env.MONGODB_URI,
+  // mongoUri may be undefined in development; database module will fallback to an in-memory server
+  mongoUri: process.env.MONGODB_URI || undefined,
   accessSecret: process.env.JWT_ACCESS_SECRET,
   refreshSecret: process.env.JWT_REFRESH_SECRET,
   accessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m',
