@@ -1,0 +1,24 @@
+Medicine,Composition,Usage,Dosage,Alternative
+Paracetamol,Paracetamol 500mg,Fever and pain,1 tablet every 6 hours,Crocin
+Crocin,Paracetamol 500mg,Fever and headache,1 tablet every 6 hours,Paracetamol
+Dolo650,Paracetamol 650mg,Fever,1 tablet after food,Paracetamol
+Azithromycin,Azithromycin 500mg,Bacterial infection,1 tablet daily for 3 days,Azee
+Azee,Azithromycin 500mg,Bacterial infection,1 tablet daily,Azithromycin
+Amoxicillin,Amoxicillin 500mg,Bacterial infection,1 capsule three times daily,Mox
+Mox,Amoxicillin 500mg,Bacterial infection,1 capsule three times daily,Amoxicillin
+Pantoprazole,Pantoprazole 40mg,Acidity,1 tablet before breakfast,Pan40
+Pan40,Pantoprazole 40mg,Acidity,1 tablet before breakfast,Pantoprazole
+Cetirizine,Cetirizine 10mg,Allergy,1 tablet at night,Cetzine
+Cetzine,Cetirizine 10mg,Allergy,1 tablet at night,Cetirizine
+Metformin,Metformin 500mg,Diabetes,1 tablet twice daily,Glycomet
+Glycomet,Metformin 500mg,Diabetes,1 tablet twice daily,Metformin
+Amlodipine,Amlodipine 5mg,High blood pressure,1 tablet daily,Amlopres
+Amlopres,Amlodipine 5mg,Hypertension,1 tablet daily,Amlodipine
+Atorvastatin,Atorvastatin 10mg,High cholesterol,1 tablet at bedtime,Lipitor
+Lipitor,Atorvastatin 10mg,High cholesterol,1 tablet at bedtime,Atorvastatin
+Omeprazole,Omeprazole 20mg,Acidity,1 tablet before breakfast,Omez
+Omez,Omeprazole 20mg,Acidity,1 tablet before breakfast,Omeprazole
+Ibuprofen,Ibuprofen 400mg,Pain and inflammation,1 tablet after meals,Brufen
+Brufen,Ibuprofen 400mg,Pain relief,1 tablet after meals,Ibuprofen
+VitaminC,Ascorbic Acid,Vitamin deficiency,1 tablet daily,Limcee
+Limcee,Vitamin C,Vitamin deficiency,1 tablet daily,VitaminC
