@@ -1,16 +1,25 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+<<<<<<< HEAD
 import { Link, useNavigate, useParams } from 'react-router-dom'
+=======
+import { Link, useParams } from 'react-router-dom'
+>>>>>>> parent of ac8c6aab (bug add hahahhaa)
 import { FiArrowLeft, FiBell, FiCheck, FiClock, FiEdit2, FiMapPin, FiMessageSquare, FiPlus, FiSearch, FiShoppingBag, FiUpload, FiVolume2, FiX } from 'react-icons/fi'
 import { medicines, categories } from '../data/mockData'
 import { Button, Card, Input, Modal } from '../components/Ui'
 
+<<<<<<< HEAD
 export function Dashboard({ reminders }) {
   const userName = localStorage.getItem('userName') || 'User'
   return <div className="page dashboard"><div className="page-heading"><p>Home › Dashboard</p><h1>Hello, {userName}</h1><span>Here's your Health overview</span></div><Card className="next-dose"><small>Next Dose</small><strong>Amlokind AT</strong><span>Time <b>09:00</b></span><Button>Mark as Taken</Button></Card><div className="action-grid"><Link to="/upload-prescription"><Card><FiUpload/><span>Upload<br/>Prescription</span></Card></Link><Link to="/nearby-store"><Card><FiShoppingBag/><span>Nearby<br/>Store</span></Card></Link><Link to="/consultation"><Card><FiMessageSquare/><span>AI Doctor<br/>Consultation</span></Card></Link><Link to="/reminders"><Card><FiBell/><span>Create New<br/>Reminder</span></Card></Link></div><Card className="today"><b>Today’s medicine</b>{reminders.filter(r=>r.date==='Today').map(r=><p key={r.id}>{r.medicine}<span>{r.time}</span></p>)}</Card></div> }
+=======
+export function Dashboard({ reminders }) { return <div className="page dashboard"><div className="page-heading"><p>Home › Dashboard</p><h1>Hello, User</h1><span>Here's your Health overview</span></div><Card className="next-dose"><small>Next Dose</small><strong>Amlokind AT</strong><span>Time <b>09:00</b></span><Button>Mark as Taken</Button></Card><div className="action-grid"><Link to="/upload-prescription"><Card><FiUpload/><span>Upload<br/>Prescription</span></Card></Link><Link to="/nearby-store"><Card><FiShoppingBag/><span>Nearby<br/>Store</span></Card></Link><Link to="/consultation"><Card><FiMessageSquare/><span>AI Doctor<br/>Consultation</span></Card></Link><Link to="/reminders"><Card><FiBell/><span>Create New<br/>Reminder</span></Card></Link></div><Card className="today"><b>Today’s medicine</b>{reminders.filter(r=>r.date==='Today').map(r=><p key={r.id}>{r.medicine}<span>{r.time}</span></p>)}</Card></div> }
+>>>>>>> parent of ac8c6aab (bug add hahahhaa)
 
 export function Medicines() { const [term,setTerm]=useState(''), [active,setActive]=useState('All'); const filtered=useMemo(()=>medicines.filter(m=>(active==='All'||m.category.includes(active.split(' ')[0]))&&m.name.toLowerCase().includes(term.toLowerCase())),[active,term]); return <div className="page"><div className="crumb">Home › Medicine</div><h1>Vitamins & Supplements</h1><div className="search"><FiSearch/><input aria-label="Search medicines" value={term} onChange={e=>setTerm(e.target.value)} placeholder="Search medicines"/></div><div className="category-grid"><button onClick={()=>setActive('All')} className={active==='All'?'active':''}>All</button>{categories.map(c=><button key={c} className={active===c?'active':''} onClick={()=>setActive(c)}>{c}</button>)}</div><div className="medicine-grid">{filtered.map(m=><Link key={m.id} to={`/medicines/${m.id}`}><Card className="medicine-card"><img src={m.image} alt={m.name}/><h3>{m.name}</h3><p className="medicine-use"><b>Use:</b> {m.usefulness}</p><p>{m.description}</p></Card></Link>)}{!filtered.length&&<p>No medicines found.</p>}</div></div> }
 
 export function MedicineDetail({ addToast }) { const {id}=useParams(), medicine=medicines.find(m=>m.id===id)||medicines[0], [quantity,setQuantity]=useState(1); return <div className="page detail"><Link className="back" to="/medicines"><FiArrowLeft/> Back</Link><div className="crumb">Home › Medicine › {medicine.name}</div><div className="detail-grid"><img src={medicine.image} alt={medicine.name}/><div><h1>{medicine.name}</h1><p>Strip of 15 tablets</p><p className="rating">★ 4.7 <span>({medicine.price} reviews)</span></p><h2>₹ {medicine.price}/Box</h2><small>Inclusive of all taxes</small><hr/><h3>About this medicine</h3><p>{medicine.description}</p><h3>How to Use</h3><p>{medicine.dosage}</p><div className="quantity"><button onClick={()=>setQuantity(Math.max(1,quantity-1))}>−</button><b>{quantity}</b><button onClick={()=>setQuantity(quantity+1)}>+</button></div><Button variant="outline" onClick={()=>addToast('Medicine saved to your list')}>＋ Save</Button><Button onClick={()=>addToast(`${quantity} item${quantity>1?'s':''} added to cart`)}>Add to Cart</Button></div></div></div> }
+<<<<<<< HEAD
 
 export function Profile({ reminders, addToast }) {
   const navigate = useNavigate()
@@ -57,6 +66,10 @@ export function Profile({ reminders, addToast }) {
     </div>
   )
  }
+=======
+
+export function Profile() { return <div className="page user-entry"><div className="user-entry-icon"><FiBell/></div><p className="eyebrow">WELCOME TO MEDKIT</p><h1>Manage your health with ease.</h1><p>Log in to continue with your medicine reminders, or create a new account to get started.</p><div className="user-entry-actions"><Link to="/login"><Button>Login</Button></Link><Link to="/register"><Button variant="outline">Create Account</Button></Link></div></div> }
+>>>>>>> parent of ac8c6aab (bug add hahahhaa)
 
 export function Reminders({ reminders, setReminders, addToast }) {
  const [modal,setModal]=useState(false),[draft,setDraft]=useState({medicine:'',time:'09:00',date:'Today'}),[permission,setPermission]=useState(typeof Notification === 'undefined' ? 'unsupported' : Notification.permission); const alerted=useRef(new Set())
